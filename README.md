@@ -4,7 +4,7 @@
 
 Built for the make.fun bounty [tiny-chess-01](https://make.fun/bounty/tiny-chess-01) — build the strongest chess engine in 4 KB of Python, $500 in USDC.
 
-# tiny-chess-v2
+# tiny-chess-v2 — golfed surgical book
 
 A compact chess engine in a single 4 KB Python file, built for the
 make.fun tiny-chess-01 competition. Plays through the competition
@@ -18,21 +18,20 @@ environment protocol (HTTP driver) and searches with:
 - Evaluation: material, piece-square tables, bishop pair, tempo,
   king safety with pawn shelter, passed pawns, rook open files,
   endgame king centralisation
+- Surgical opening book (4 critical moves only, Zobrist-keyed):
+  Slav a2a4, e2e4, ERS-black d5b4 and c8g4
 
-## Trial results (practice gauntlet, 6 games each)
+## Trial results (18-game live harness, pooled)
 
-Node budget 160,000/move. Both trials undefeated (9W/3D/0L across 12 games).
+Node budget 160,000/move. Packed **4,062 B** (34 B under the 4,096 B cap).
 
-- trial-0: **Elo 1809** (5W/1D/0L) — beat depth-2, depth-3, depth-4,
-  nodes-100k and nodes-500k; drew nodes-250k. Wall 19m18s.
-- trial-1: **Elo 1654** (4W/2D/0L) — beat depth-2, depth-3, depth-4 and
-  nodes-500k; drew nodes-100k and nodes-250k. Wall 16m26s.
-
-Average Elo ~1732. For comparison the v1 entry scored 1279 / 1364.
+- **Pooled Elo 1809 (16W/1D/1L, spare 1,629 = 543/6)** — golfing the
+  surgical book lost ZERO Elo vs the un-golfed v2 (Elo 1809, spare 532),
+  no time losses. Same Elo, +11 spare per 6 games.
 
 ## Files
 
-- `main.py` — the engine (packed, <= 4096 bytes)
+- `main.py` — the engine (packed, 4,062 bytes, <= 4096)
 - `src.py` — the engine source (unpacked; not committed, over the file cap)
 - `README.md` — this file
 - `LICENSE` — MIT
